@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- V-Eats Kiosk Specifics ---
+veats-kiosk/.env
+veats-kiosk/venv/
+veats-kiosk/__pycache__/
