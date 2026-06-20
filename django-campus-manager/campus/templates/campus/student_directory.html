@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Directory</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-dark bg-dark mb-4 shadow">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1">VIT Campus Manager</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2 class="mb-4">Student Directory</h2>
+        
+        <div class="row">
+            {% for student in students %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm h-100 border-0">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">{{ student.first_name }} {{ student.last_name }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">ID: {{ student.enrollment_number }}</h6>
+                            <hr>
+                            
+                            <p class="card-text mb-2">
+                                <strong>Dept:</strong> {{ student.department }}<br>
+                                <strong>Email:</strong> {{ student.email }}
+                            </p>
+                            
+                            <hr>
+                            
+                            <div>
+                                <strong>Courses:</strong><br>
+                                {% for course in student.courses.all %}
+                                    <span class="badge bg-secondary mb-1">{{ course.course_code }}</span>
+                                {% empty %}
+                                    <span class="text-muted small">Not enrolled in any courses.</span>
+                                {% endfor %}
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <div class="alert alert-warning shadow-sm" role="alert">
+                        No students found. Please add some in the Admin panel!
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
